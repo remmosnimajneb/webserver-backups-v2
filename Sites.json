@@ -1,0 +1,12 @@
+{
+  "Sites": 
+  [
+    {
+      "NiceName": "My Sample Website",
+      "SiteName": "SampleWebsite",
+      "Domain": "example.com",
+      "WebRoot": "/home/example/public_html/",
+      "Databases": [{"Database": "NULL"}]
+    }
+  ]
+}
