@@ -1,7 +1,7 @@
 <?php
 /********************************
 * Project: Website Backup System
-* Code Version: 2.0.1
+* Code Version: 2.2.0
 * Author: Benjamin Sommer - BenSommer.net
 * Company: The Berman Consulting Group - BermanGroup.com
 ***************************************************************************************/
@@ -10,7 +10,6 @@
 * Config File
 */
 
-
 /* MySQL Login Info */
 $DB_Host = "";
 $DB_User = "";
@@ -18,19 +17,31 @@ $DB_Password = "";
 
 /* FTP Info */
 $FTP_Server = "";
+$FTP_Folder = "";
 $FTP_Username = "";
 $FTP_Password = "";
 
-/* Admin Email */
-$AdminEmail = "";
+/* Server Name */
+$ServerName = "";
 
-/* Emails Debug log to Admin */
+/* Email Config */
+$SendTo = "";
+$SendFrom = "";
+
+/*------------That's it! Stop Editing!------------*/
+
+/*
+* Function SendDebug
+* @Description: Sends debug log to Admin on backup run
+* @Param $Success - (Boolean) If ran ok or error
+* @Param $Logger - (String) Text of logger
+* @Return None
+*/
 function SendDebug($Success, $Logger){
 	if($Success){
-		$Subject = "SUCCESS: Website Backup System - MySQL";
+		$Subject = $GLOBALS['ServerName'] . " - SUCCESS: Website Backup System - MySQL";
 	} else {
-		$Subject = "FAILED: Website Backup System - MySQL";
+		$Subject = $GLOBALS['ServerName'] . " - FAILED: Website Backup System - MySQL";
 	}
-
-	mail($AdminEmail, $Subject, $Logger, 'To: ' . $AdminEmail . "\r\n" . 'From: ' . $AdminEmail . "\r\n" . 'Reply-To: ' . $AdminEmail . "\r\n");
+	mail($GLOBALS['SendTo'], $Subject, $Logger, 'From: ' . $GLOBALS['SendFrom'] . "\r\n" . 'Reply-To: ' . $GLOBALS['SendFrom'] . "\r\n");
 }
